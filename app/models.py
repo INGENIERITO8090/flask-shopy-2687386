@@ -17,8 +17,7 @@ class Producto(db.Model):
                          unique=True)  #para decir que un dato es unico se usa el unique =true y para llaves primarias se usa el primary_key
     precio = db.Column(db.Numeric(precision=10,
                          scale = 2))
-    imagen = db.Column(db.String(120),
-                         unique=True)
+    imagen = db.Column(db.String(120))
     
 class Venta(db.Model):
     __tablename__="ventas"
