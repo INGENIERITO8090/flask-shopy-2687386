@@ -14,9 +14,6 @@ class ProductForm():
 
 
 
-
-
-
 class NewProductForm(FlaskForm,ProductForm):
     nombre =  StringField("Ingrese nombre producto",
                           validators=[InputRequired(message='Nombre requerido')])
@@ -28,8 +25,9 @@ class NewProductForm(FlaskForm,ProductForm):
                                       "Solo se acpetan imagenes")
                       ]) 
     
-    submit = SubmitField("Guardar") 
+    submit = SubmitField("Guardar")
+     
 class EditProductForm(FlaskForm,
                           ProductForm):
         submit= SubmitField("Actualizar")
-    
+

@@ -26,7 +26,7 @@ def crear():
 @productos.route('/listar')
 def listar():
      ## seleccionar los profuctos
-    productos = app.models.Producto.query.all()
+    productos = app.models.Producto.query.all() 
     return render_template("list.html", 
                             productos = productos)   
 @productos.route('/editar/<producto_id>',methods=['GET','POST'])
@@ -48,3 +48,4 @@ def eliminar (producto_id):
     app.db.session.commit()
     flash('producto eliminado')
     return redirect('/productos/listar')
+

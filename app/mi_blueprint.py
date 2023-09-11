@@ -5,4 +5,4 @@ mi_blueprint = Blueprint('mi_blueprint',
 
 @mi_blueprint.route('/ejemplo')
 def ejemplo():
-    return 'estoy en el modulo ejemplos'
+    return 'estoy en el modulo ejemplos' 
