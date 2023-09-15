@@ -1,4 +1,5 @@
 from flask import render_template,redirect,flash
+from flask_login import login_required
 from app.clientes import clientes
 import app
 
@@ -7,6 +8,7 @@ from .forms import ClienteForm,NewProductoForm,EditClienteForm
 
 
 @clientes.route('/cliente', methods=['GET','POST'])
+@login_required
 def crear(): 
     p = app.models.Cliente()
     form = NewProductoForm()
@@ -23,6 +25,7 @@ def crear():
     
     
 @clientes.route('/listar')
+@login_required
 def listar():
      ## seleccionar los profuctos
     clientes= app.models.Cliente.query.all() 
@@ -30,6 +33,7 @@ def listar():
                             clientes = clientes)
        
 @clientes.route('/editar/<cliente_id>',methods=['GET','POST'])
+@login_required
 def editar (cliente_id):
     p = app.models.Cliente.query.get(cliente_id)
     form = EditClienteForm(obj = p)
@@ -44,6 +48,7 @@ def editar (cliente_id):
  
  
 @clientes.route('/eliminar/<cliente_id>')
+@login_required
 def eliminar (cliente_id):
     p = app.models.Cliente.query.get(cliente_id)
     app.db.session.delete(p)
