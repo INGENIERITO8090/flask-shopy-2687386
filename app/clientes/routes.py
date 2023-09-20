@@ -3,26 +3,25 @@ from flask_login import login_required
 from app.clientes import clientes
 import app
 
-from .forms import ClienteForm,NewProductoForm,EditClienteForm
-
+from .forms import ClienteForm,NewClienteForm,EditClienteForm
 
 
 @clientes.route('/cliente', methods=['GET','POST'])
-@login_required
 def crear(): 
     p = app.models.Cliente()
-    form = NewProductoForm()
-    ## 
+    form = NewClienteForm()
+    c=p
     if form.validate_on_submit():
         #guardar en base de datos
         form.populate_obj(p)
+        c.set_password(form.password.data)
+        print(c)
         app.db.session.add(p)
         app.db.session.commit()  
-        flash("cliente  registrado correctamente")
-        return redirect('clientes/listar')
+        flash("cliente registrado correctamente")
+        return redirect('/clientes/listar')
     return render_template('newCliente.html',
                            form=form)
-    
     
 @clientes.route('/listar')
 @login_required
@@ -40,7 +39,7 @@ def editar (cliente_id):
     if form.validate_on_submit():
         form.populate_obj(p)
         app.db.session.commit()
-        flash(' cliente actualizado')
+        flash('cliente actualizado')
         return redirect('/clientes/listar')
     return render_template('new.html',
                            form=form)    
@@ -53,7 +52,7 @@ def eliminar (cliente_id):
     p = app.models.Cliente.query.get(cliente_id)
     app.db.session.delete(p)
     app.db.session.commit()
-    flash('producto eliminado')
+    flash('cliente eliminado')
     return redirect('/clientes/listar')
 
 

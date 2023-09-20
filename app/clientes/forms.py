@@ -8,9 +8,9 @@ class ClienteForm():
     username =  StringField("Ingrese nombre cliente",validators=[InputRequired(message='Nombre requerido')])
     email =  EmailField("Ingrese email",validators=[InputRequired(message="CAMPO REQUERIDO "),
                                                     Email(message="se necesita una direccion con @")])
-    contraseña =  StringField("Ingrese contraseña",validators=[InputRequired(message='Contraseña'),Length(10,10)]) 
+    password =  StringField("Ingrese contraseña",validators=[InputRequired(message='Contraseña'),Length(10,10)]) 
     
-class NewProductoForm(FlaskForm,ClienteForm):
+class NewClienteForm(FlaskForm,ClienteForm):
    
     submit = SubmitField("Guardar") 
       

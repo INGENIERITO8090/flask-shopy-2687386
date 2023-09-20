@@ -2,6 +2,16 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {%   block content  %}
+{% for mensaje in get_flashed_messages() %} 
+<div class="alert alert-danger" >
+    <button type="button "
+            class="close"
+            data-dismiss="alert">
+        &times;
+    </button>
+{{ mensaje }}
+</div>
+{% endfor%}
     <h1>Iniciar sesion </h1> 
     <form 
         action="" 
